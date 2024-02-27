@@ -3,7 +3,7 @@ import { HiOutlineTrash } from "react-icons/hi"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
 
-function handleSuccess(router) {
+function handleSuccess(router: any) {
   toast.success("Letter deleted successfully!")
   setTimeout(() => {
     router.refresh()
