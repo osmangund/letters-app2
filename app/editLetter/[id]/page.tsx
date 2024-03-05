@@ -1,11 +1,27 @@
 import EditLetterForm from "@/components/EditLetterForm"
-import connectMongoDB from "@/libs/mongodb"
+
+const getLetters = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/letters`, {
+      cache: "no-store",
+    })
+    const data = await res.json()
+
+    if (!res.ok) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (err: any) {
+    console.error("Error loading letters: ", err)
+  }
+}
 
 export const generateStaticParams = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  }
+  const { letters } = await getLetters()
+
+  return letters?.map((letter: any) => ({
+    id: letter._id,
+  }))
 }
 
 export default function EditLetter() {

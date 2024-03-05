@@ -4,7 +4,7 @@ import { HiPencilAlt } from "react-icons/hi"
 
 const getLetters = async () => {
   try {
-    const res = await fetch(`${process.env.url}/api/letters`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/letters`, {
       cache: "no-store",
     })
     const data = await res.json()
@@ -45,6 +45,7 @@ const Letter = ({
 
 export default async function LettersList() {
   const { letters } = await getLetters()
+
   return (
     <>
       {letters?.map((letter: any) => {

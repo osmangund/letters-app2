@@ -10,8 +10,9 @@ export default function AddLetter() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/letters`
     try {
-      const res = await fetch(`${process.env.url}/api/letters`, {
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,11 +20,11 @@ export default function AddLetter() {
         body: JSON.stringify({ title, description }),
       })
 
+      if (!res.ok) return console.log("Error adding letter: ", res)
+
       if (res.ok) {
         router.push("/")
         router.refresh()
-      } else {
-        throw new Error("Failed to create letter")
       }
     } catch (err) {
       console.log("Error adding letter: ", err)
