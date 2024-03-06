@@ -33,7 +33,7 @@ export default function RemoveBtn({ id }: { id: string }) {
         }
       )
 
-      if (!res.ok) return console.error("Error deleting letter")
+      if (!res.ok) return console.error("Error deleting letter on RemoveBtn")
       if (res.ok) return handleSuccess(router)
     }
   }

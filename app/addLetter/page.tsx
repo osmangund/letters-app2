@@ -20,7 +20,7 @@ export default function AddLetter() {
         body: JSON.stringify({ title, description }),
       })
 
-      if (!res.ok) return console.log("Error adding letter: ", res)
+      if (!res.ok) return console.log("Error adding letter on addLetter/page: ", res)
 
       if (res.ok) {
         router.push("/")

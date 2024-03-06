@@ -12,7 +12,7 @@ const getLetters = async () => {
     }
     return data
   } catch (err: any) {
-    console.error("Error loading letters: ", err)
+    console.error("Error loading letters on /editLetter/[id]: ", err)
   }
 }
 
