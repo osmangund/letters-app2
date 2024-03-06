@@ -27,9 +27,7 @@ export const generateStaticParams = async () => {
 }
 export async function PUT(req, { params }) {
   const { id } = params
-  console.log(id)
   const { newTitle: title, newDescription: description } = await req.json()
-  console.log(title, description)
   await connectMongoDB()
   await Letter.findByIdAndUpdate(id, { title, description })
   return NextResponse.json({ message: "Letter updated" }, { status: 200 })
