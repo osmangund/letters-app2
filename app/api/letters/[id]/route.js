@@ -4,9 +4,8 @@ import { NextResponse } from "next/server"
 
 const getLetters = async () => {
   try {
-    const protocol = process?.env.NODE_ENV === "development" ? "http" : "https"
     const res = await fetch(
-      `${protocol}://${process.env.NEXT_PUBLIC_URL}/api/letters`,
+      `${process.env.NEXT_PUBLIC_URL}/api/letters`,
       {
         cache: "no-store",
       }
