@@ -4,10 +4,20 @@ import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
 
 function handleSuccess(router: any) {
-  toast.success("Letter deleted successfully!")
+  toast.success("Letter deleted.", {
+    style: {
+      border: "1px solid mediumpurple",
+      padding: "16px",
+      color: "black",
+    },
+    iconTheme: {
+      primary: "mediumpurple",
+      secondary: "#FFFAEE",
+    },
+  })
   setTimeout(() => {
     router.refresh()
-  }, 1000)
+  }, 700)
 }
 
 export default function RemoveBtn({ id }: { id: string }) {

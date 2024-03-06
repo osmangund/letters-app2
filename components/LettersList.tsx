@@ -11,7 +11,7 @@ const getLetters = async () => {
       throw new Error(data.message)
     }
     return data
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error loading letters: ", err)
   }
 }
