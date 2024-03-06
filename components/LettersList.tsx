@@ -13,6 +13,7 @@ const getLetters = async () => {
     return data
   } catch (err) {
     console.error("Error loading letters: ", err)
+    return { letters: [] }
   }
 }
 
