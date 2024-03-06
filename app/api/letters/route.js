@@ -18,8 +18,12 @@ export async function GET() {
 export async function DELETE(req) {
   const id = await req.nextUrl.searchParams.get("id")
   await connectMongoDB()
-  await Letter.findByIdAndDelete(id)
+  if (id !== null) {
+    await Letter.findByIdAndDelete(id)
+  } else {
+    await Letter.deleteMany()
+  }
   return NextResponse.json({ message: "Letter deleted", status: 200 })
 }
-// export const dynamic = "force-static"
 
+// export const dynamic = "force-static"

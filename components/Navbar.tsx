@@ -1,4 +1,5 @@
 import Link from "next/link"
+import RemoveAllBtn from "./RemoveAllBtn"
 
 export default function Navbar() {
   return (
@@ -6,9 +7,12 @@ export default function Navbar() {
       <Link href={"/"} className="text-white font-bold">
         Letters App
       </Link>
-      <Link href={"/addLetter"} className="bg-white p-2">
-        Add Letter
-      </Link>
+      <div className="flex gap-2">
+        <Link href={"/addLetter"} className="bg-white p-2">
+          Add Letter
+        </Link>
+        {/* <RemoveAllBtn /> */}
+      </div>
     </nav>
   )
 }

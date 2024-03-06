@@ -14,13 +14,15 @@ export default function AddLetter() {
     try {
       const res = await fetch(url, {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ title, description }),
       })
 
-      if (!res.ok) return console.log("Error adding letter on addLetter/page: ", res)
+      if (!res.ok)
+        return console.log("Error adding letter on addLetter/page: ", res)
 
       if (res.ok) {
         router.push("/")

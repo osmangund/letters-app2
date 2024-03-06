@@ -8,7 +8,7 @@ const getLetters = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/letters`,
       {
         cache: "no-store",
-      }
+      } 
     )
     const data = await res.json()
 

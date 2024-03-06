@@ -1,24 +1,7 @@
 "use client"
 import { HiOutlineTrash } from "react-icons/hi"
-import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
-
-function handleSuccess(router: any) {
-  toast.success("Letter deleted.", {
-    style: {
-      border: "1px solid mediumpurple",
-      padding: "16px",
-      color: "black",
-    },
-    iconTheme: {
-      primary: "mediumpurple",
-      secondary: "#FFFAEE",
-    },
-  })
-  setTimeout(() => {
-    router.refresh()
-  }, 700)
-}
+import { handleSuccess } from "./handleSuccess"
 
 export default function RemoveBtn({ id }: { id: string }) {
   const router = useRouter()
@@ -34,7 +17,7 @@ export default function RemoveBtn({ id }: { id: string }) {
       )
 
       if (!res.ok) return console.error("Error deleting letter on RemoveBtn")
-      if (res.ok) return handleSuccess(router)
+      if (res.ok) return handleSuccess(router, "Letter deleted")
     }
   }
   return (

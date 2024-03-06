@@ -7,9 +7,8 @@ const getLetters = async () => {
     })
     const data = await res.json()
 
-    if (!res.ok) {
-      throw new Error(data.message)
-    }
+    if (!res.ok) throw new Error(data.message)
+
     return data
   } catch (err) {
     console.error("Error loading letters on LettersList: ", err)
@@ -22,16 +21,20 @@ export default async function LettersList() {
 
   return (
     <>
-      {letters?.map((letter: any) => {
-        return (
-          <Letter
-            key={letter._id}
-            title={letter.title}
-            description={letter.description}
-            _id={letter._id}
-          />
-        )
-      })}
+      <div className="flex flex-wrap box-border">
+        {letters.length > 0
+          ? letters?.map((letter: any) => {
+              return (
+                <Letter
+                  key={letter._id}
+                  title={letter.title}
+                  description={letter.description}
+                  _id={letter._id}
+                />
+              )
+            })
+          : "There are no letters yet..."}
+      </div>
     </>
   )
 }
