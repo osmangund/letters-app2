@@ -2,6 +2,7 @@
 import { HiOutlineTrash } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { handleSuccess } from "./handleSuccess"
+import { fetchLettersPath } from "@/utils/letters"
 
 export default function RemoveBtn({ id }: { id: string }) {
   const router = useRouter()
@@ -10,7 +11,7 @@ export default function RemoveBtn({ id }: { id: string }) {
 
     if (confirmed) {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/letters?id=${id}`,
+        `${fetchLettersPath}?id=${id}`,
         {
           method: "DELETE",
         }

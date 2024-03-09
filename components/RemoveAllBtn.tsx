@@ -1,4 +1,5 @@
 "use client"
+import { fetchLettersPath } from "@/utils/letters"
 import { handleSuccess } from "./handleSuccess"
 import { useRouter } from "next/navigation"
 
@@ -9,7 +10,7 @@ export default function RemoveAllBtn() {
     const confirmed = confirm("Are you sure you want to delete all letters?")
 
     if (confirmed) {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/letters`, {
+      const res = await fetch(fetchLettersPath, {
         method: "DELETE",
       })
       if (!res.ok) return console.error("Error deleting letter on RemoveAllBtn")

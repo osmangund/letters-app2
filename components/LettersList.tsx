@@ -1,20 +1,5 @@
-import { Letter } from "./Letter"
-
-const getLetters = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/letters`, {
-      cache: "no-store",
-    })
-    const data = await res.json()
-
-    if (!res.ok) throw new Error(data.message)
-
-    return data
-  } catch (err) {
-    console.error("Error loading letters on LettersList: ", err)
-    return { letters: [] }
-  }
-}
+import { LetterPreview } from "./LetterPreview"
+import { getLetters } from "@/utils/letters"
 
 export default async function LettersList() {
   const { letters } = await getLetters()
@@ -25,10 +10,11 @@ export default async function LettersList() {
         {letters.length > 0
           ? letters?.map((letter: any) => {
               return (
-                <Letter
+                <LetterPreview
                   key={letter._id}
                   title={letter.title}
                   description={letter.description}
+                  createdAt={letter.createdAt}
                   _id={letter._id}
                 />
               )

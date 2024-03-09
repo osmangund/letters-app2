@@ -3,9 +3,9 @@ import Letter from "@/models/letter"
 import { NextResponse } from "next/server"
 
 export async function POST(req) {
-  const { title, description } = await req.json()
+  const { title, description, letter } = await req.json()
   await connectMongoDB()
-  await Letter.create({ title, description })
+  await Letter.create({title, description, letter})
   return NextResponse.json({ message: "Letter created", status: 201 })
 }
 

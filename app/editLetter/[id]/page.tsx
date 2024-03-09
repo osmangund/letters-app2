@@ -1,30 +1,26 @@
 import EditLetterForm from "@/components/EditLetterForm"
+import { fetchLettersPath, getLetterById, getLetters } from "@/utils/letters"
 
-const getLetters = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/letters`, {
-      cache: "no-store",
-    })
-    const data = await res.json()
+// export const generateStaticParams = async () => {
+//   const { letters } = await getLetters()
 
-    if (!res.ok) {
-      throw new Error(data.message)
-    }
-    return data
-  } catch (err: any) {
-    console.error("Error loading letters on /editLetter/[id]: ", err)
-    return { letters: [] }
-  }
-}
+//   return letters?.map((letter: any) => ({
+//     id: letter._id,
+//   }))
+// }
 
-export const generateStaticParams = async () => {
-  const { letters } = await getLetters()
 
-  return letters?.map((letter: any) => ({
-    id: letter._id,
-  }))
-}
 
-export default function EditLetter() {
-  return <EditLetterForm />
+export default async function EditLetter({ params: { id } }: any) {
+  const {
+    letter: { title, description, letter },
+  } = await getLetterById(id)
+  return (
+    <EditLetterForm
+      id={id}
+      title={title}
+      description={description}
+      letter={letter}
+    />
+  )
 }
