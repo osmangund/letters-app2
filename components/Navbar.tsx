@@ -3,6 +3,7 @@
 import Link from "next/link"
 import RemoveAllBtn from "./RemoveAllBtn"
 import { usePathname } from "next/navigation"
+import Button from "./Button"
 
 const LettersAppLink = () => {
   return (
@@ -14,7 +15,15 @@ const LettersAppLink = () => {
 
 const Nav = ({ children }: any) => {
   return (
-    <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
+    <nav className="flex justify-between items-center px-8 py-3 bg-black text-white">
+      {children}
+    </nav>
+  )
+}
+
+const ReadLetterNav = ({ children }: any) => {
+  return (
+    <nav className="flex justify-between max-w-3xl mx-auto items-center px-8 py-3 bg-letterBg text-letterText">
       {children}
     </nav>
   )
@@ -25,9 +34,9 @@ const lettersPageNav = () => {
     <Nav>
       <LettersAppLink />
       <div className="flex gap-2">
-        <Link href={"/addLetter"} className="bg-white p-2">
-          Add Letter
-        </Link>
+        <Button>
+          <Link href={"/addLetter"}>Add Letter</Link>
+        </Button>
         <RemoveAllBtn />
       </div>
     </Nav>
@@ -38,11 +47,9 @@ const addLetterNav = () => {
   return (
     <Nav>
       <LettersAppLink />
-      <div className="flex gap-2">
-        <Link href={"/"} className="bg-white p-2">
-          Back
-        </Link>
-      </div>
+      <Button>
+        <Link href={"/"}>Back</Link>
+      </Button>
     </Nav>
   )
 }
@@ -51,29 +58,26 @@ const editLetterNav = (id: string) => {
   return (
     <Nav>
       <LettersAppLink />
-      <div className="flex gap-2">
-        <Link href={`/letters/${id}`} className="bg-white p-2">
-          Back to Letter
-        </Link>
-      </div>
+      <Button>
+        <Link href={`/letters/${id}`}>Back to Letter</Link>
+      </Button>
     </Nav>
   )
 }
 
 const readLetterNav = (id: string) => {
   return (
-    <Nav>
+    <ReadLetterNav>
       <LettersAppLink />
-      <Link href={`/editLetter/${id}`} className="bg-white p-2">
-        Edit
-      </Link>
-    </Nav>
+      <Button>
+        <Link href={`/editLetter/${id}`}>Edit</Link>
+      </Button>
+    </ReadLetterNav>
   )
 }
 
 export default function Navbar() {
   const pathname = usePathname()
-  console.log(pathname)
   const id = pathname.split("/")[2]
 
   if (pathname === "/letters" || pathname === "/") return lettersPageNav()

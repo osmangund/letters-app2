@@ -1,5 +1,5 @@
 import EditLetterForm from "@/components/EditLetterForm"
-import { fetchLettersPath, getLetterById, getLetters } from "@/utils/letters"
+import { getLetterById } from "@/utils/letters"
 
 // export const generateStaticParams = async () => {
 //   const { letters } = await getLetters()

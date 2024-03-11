@@ -22,7 +22,7 @@ export const LetterPreview = ({
   })
 
   return (
-    <div className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start w-1/3 box-border px-4">
+    <article className="p-4 my-6 flex justify-between *:break-all gap-6 items-start w-1/3">
       <div className="flex flex-col gap-4">
         <div>
           <h2 className="font-bold text-3xl">{title}</h2>
@@ -41,6 +41,6 @@ export const LetterPreview = ({
           <HiPencilAlt size={24} />
         </Link>
       </div>
-    </div>
+    </article>
   )
 }

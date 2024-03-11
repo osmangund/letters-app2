@@ -2,6 +2,7 @@
 import { fetchLettersPath } from "@/utils/letters"
 import { handleSuccess } from "./handleSuccess"
 import { useRouter } from "next/navigation"
+import Button from "./Button"
 
 export default function RemoveAllBtn() {
   const router = useRouter()
@@ -18,11 +19,5 @@ export default function RemoveAllBtn() {
     }
   }
 
-  return (
-    <>
-      <button className="bg-white p-2" onClick={removeLetters}>
-        Delete All Letters
-      </button>
-    </>
-  )
+  return <Button onClick={removeLetters}>Delete All</Button>
 }

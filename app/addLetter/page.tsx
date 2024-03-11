@@ -1,4 +1,6 @@
 "use client"
+import Button from "@/components/Button"
+import { Form, Input, LetterTextArea } from "@/components/Form"
 import { handleSuccess } from "@/components/handleSuccess"
 import { fetchLettersPath } from "@/utils/letters"
 import { useRouter } from "next/navigation"
@@ -34,34 +36,24 @@ export default function AddLetter() {
   }
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-      <input
-        onChange={(e) => setTitle(e.target.value)}
-        type="text"
+    <Form onSubmit={handleSubmit} letter={letter}>
+      <Input
+        name="title"
         value={title}
-        placeholder="Title..."
-        className="border border-slate-500 px-4 py-2 text-start justify-start"
-        required
+        onChange={(e) => setTitle(e.target.value)}
       />
-      <input
-        onChange={(e) => setDescription(e.target.value)}
-        type="text"
+      <Input
+        name="description"
         value={description}
-        placeholder="Description..."
-        className="border border-slate-500 px-4 py-2 text-start justify-start"
-        required
+        onChange={(e) => setDescription(e.target.value)}
       />
-      <textarea
-        onChange={(e) => setLetter(e.target.value)}
+      <LetterTextArea
+        name="letter"
         value={letter}
-        placeholder="Letter... (markdown supported)"
-        className="border border-slate-500 px-4 py-2 h-48 text-start justify-start"
-        required
+        onChange={(e) => setLetter(e.target.value)}
       />
       <label htmlFor="image">Add image</label>
-      <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-        Add Letter
-      </button>
-    </form>
+      <Button>Add Letter</Button>
+    </Form>
   )
 }

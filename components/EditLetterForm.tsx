@@ -4,6 +4,8 @@ import { fetchLettersPath } from "@/utils/letters"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { handleSuccess } from "./handleSuccess"
+import { Form, Input, LetterTextArea } from "./Form"
+import Button from "./Button"
 
 type EditLetterFormProps = {
   id: string
@@ -25,7 +27,6 @@ export default function EditLetterForm({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-
     try {
       const res = await fetch(`${fetchLettersPath}/${id}`, {
         method: "PUT",
@@ -48,36 +49,23 @@ export default function EditLetterForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <input
-        type="text"
-        id="title"
+    <Form onSubmit={handleSubmit} letter={newLetter}>
+      <Input
         name="title"
-        placeholder="Title..."
         value={newTitle}
         onChange={(e) => setNewTitle(e.target.value)}
-        className="border border-slate-500 px-4 py-2 text-start justify-start"
       />
-      <input
-        type="text"
-        id="description"
+      <Input
         name="description"
-        placeholder="Description..."
         value={newDescription}
         onChange={(e) => setNewDescription(e.target.value)}
-        className="border border-slate-500 px-4 py-2 text-start justify-start"
       />
-      <textarea
-        placeholder="Letter..."
-        id="letter"
+      <LetterTextArea
         name="letter"
         value={newLetter}
         onChange={(e) => setNewLetter(e.target.value)}
-        className="border border-slate-500 px-4 py-2 h-48 text-start justify-start"
       />
-      <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-        Update Letter
-      </button>
-    </form>
+      <Button>Update Letter</Button>
+    </Form>
   )
 }

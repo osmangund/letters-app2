@@ -12,7 +12,7 @@ export const getLetters = async () => {
     }
     return data
   } catch (err) {
-    console.error("Error loading letters on /editLetter/[id]: ", err)
+    console.error("Error getting letters: ", err)
     return { letters: [] }
   }
 }
@@ -22,13 +22,14 @@ export const getLetterById = async (id) => {
     const res = await fetch(`${fetchLettersPath}/${id}`, {
       method: "GET",
       mode: "no-cors",
+      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
       },
     })
-    if (!res.ok) throw new Error("Error editing letter on editLetter/[id]/page")
+    if (!res.ok) throw new Error("Error getting single letter: ")
     return res.json()
   } catch (err) {
-    console.log("Error editing letter: ", err)
+    console.log("Error getting single letter: ", err)
   }
 }
