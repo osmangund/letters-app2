@@ -13,66 +13,50 @@ const LettersAppLink = () => {
   )
 }
 
-const Nav = ({ children }: any) => {
+const Nav = ({ children, readLetter = false }: any) => {
   return (
     <nav className="flex justify-between items-center px-8 py-3 bg-black text-white">
+      <LettersAppLink />
       {children}
     </nav>
   )
 }
 
-const ReadLetterNav = ({ children }: any) => {
+const lettersPageNavItems = () => {
   return (
-    <nav className="flex justify-between max-w-3xl mx-auto items-center px-8 py-3 bg-letterBg text-letterText">
-      {children}
-    </nav>
-  )
-}
-
-const lettersPageNav = () => {
-  return (
-    <Nav>
-      <LettersAppLink />
-      <div className="flex gap-2">
-        <Button>
-          <Link href={"/addLetter"}>Add Letter</Link>
-        </Button>
-        <RemoveAllBtn />
-      </div>
-    </Nav>
-  )
-}
-
-const addLetterNav = () => {
-  return (
-    <Nav>
-      <LettersAppLink />
+    <div className="flex gap-2">
       <Button>
-        <Link href={"/"}>Back</Link>
+        <Link href={"/addLetter"}>Add Letter</Link>
       </Button>
-    </Nav>
+      <RemoveAllBtn />
+    </div>
   )
 }
 
-const editLetterNav = (id: string) => {
+const addLetterNavItems = () => {
   return (
-    <Nav>
-      <LettersAppLink />
-      <Button>
-        <Link href={`/letters/${id}`}>Back to Letter</Link>
-      </Button>
-    </Nav>
+    <Button>
+      <Link href={"/"}>Back</Link>
+    </Button>
+  )
+}
+
+const editLetterNavItems = (id: string) => {
+  return (
+    <Button>
+      <Link href={`/letters/${id}`}>Back to Letter</Link>
+    </Button>
   )
 }
 
 const readLetterNav = (id: string) => {
   return (
-    <ReadLetterNav>
+    <nav className="flex justify-between items-center max-w-3xl mx-auto px-8 py-3 bg-black text-white">
       <LettersAppLink />
       <Button>
         <Link href={`/editLetter/${id}`}>Edit</Link>
       </Button>
-    </ReadLetterNav>
+    </nav>
   )
 }
 
@@ -80,8 +64,12 @@ export default function Navbar() {
   const pathname = usePathname()
   const id = pathname.split("/")[2]
 
-  if (pathname === "/letters" || pathname === "/") return lettersPageNav()
-  if (pathname === "/addLetter") return addLetterNav()
-  if (pathname.match(/\/editLetter+/)) return editLetterNav(id)
+  let items
+
+  if (pathname === "/letters" || pathname === "/") items = lettersPageNavItems()
+  if (pathname === "/addLetter") items = addLetterNavItems()
+  if (pathname.match(/\/editLetter+/)) items = editLetterNavItems(id)
   if (pathname.match(/\/letters\/+/)) return readLetterNav(id)
+
+  return <Nav>{items}</Nav>
 }

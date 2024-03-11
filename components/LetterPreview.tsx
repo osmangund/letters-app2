@@ -22,13 +22,13 @@ export const LetterPreview = ({
   })
 
   return (
-    <article className="p-4 my-6 flex justify-between *:break-all gap-6 items-start w-1/3">
-      <div className="flex flex-col gap-4">
+    <article className="p-4 my-6 flex justify-between gap-6 items-start w-1/3">
+      <div className="flex flex-col gap-2">
         <div>
-          <h2 className="font-bold text-3xl">{title}</h2>
+          <h2 className="font-extrabold text-2xl ">{title}</h2>
         </div>
         <div className="min-h-16">
-          <p className="text-sm">{description}</p>
+          <p className="text-lg">{description}</p>
         </div>
         <div className="">
           <Link href={`/letters/${_id}`}>Read more...</Link>

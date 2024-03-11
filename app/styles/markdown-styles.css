@@ -4,7 +4,8 @@
 }
 
 .markdown h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
   font-weight: bold;
 }
 
